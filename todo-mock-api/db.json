@@ -1,0 +1,52 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Walk the Doga",
+      "description": "I must walk the dog around the house",
+      "state": "inprogress"
+    },
+    {
+      "id": 2,
+      "title": "Clean the dishessssssssss",
+      "description": "They are really dirty It will take some time",
+      "state": "todo"
+    },
+    {
+      "id": 3,
+      "title": "Cat something",
+      "description": "Nothing like a good, clean cat.",
+      "state": "inprogress"
+    },
+    {
+      "id": 4,
+      "title": "Go for a run",
+      "description": "Gee this will be much nicer than writing some React App",
+      "state": "done"
+    },
+    {
+      "id": 5,
+      "title": "Make the bed",
+      "description": "Nothing like a good, clean bed.",
+      "state": "inprogress"
+    },
+    {
+      "id": 6,
+      "title": "Make the app",
+      "description": "Create app for Parklio",
+      "state": "todo"
+    },
+    {
+      "id": 7,
+      "title": "Make the cat",
+      "description": "Nothing like a good, clean cat.",
+      "state": "todo"
+    },
+    {
+      "id": 0.9835246417059933,
+      "title": "ad",
+      "description": "ad",
+      "state": "inprogress"
+    }
+  ]
+}
