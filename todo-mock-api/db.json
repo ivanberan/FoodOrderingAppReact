@@ -2,19 +2,19 @@
   "tasks": [
     {
       "id": 1,
-      "title": "Walk the Doga",
+      "title": "Walk the cat",
       "description": "I must walk the dog around the house",
-      "state": "inprogress"
+      "state": "todo"
     },
     {
       "id": 2,
       "title": "Clean the dishessssssssss",
       "description": "They are really dirty It will take some time",
-      "state": "todo"
+      "state": "inprogress"
     },
     {
       "id": 3,
-      "title": "Cat something",
+      "title": "a",
       "description": "Nothing like a good, clean cat.",
       "state": "inprogress"
     },
@@ -22,13 +22,13 @@
       "id": 4,
       "title": "Go for a run",
       "description": "Gee this will be much nicer than writing some React App",
-      "state": "done"
+      "state": "inprogress"
     },
     {
       "id": 5,
       "title": "Make the bed",
       "description": "Nothing like a good, clean bed.",
-      "state": "inprogress"
+      "state": "todo"
     },
     {
       "id": 6,
@@ -40,13 +40,37 @@
       "id": 7,
       "title": "Make the cat",
       "description": "Nothing like a good, clean cat.",
-      "state": "todo"
+      "state": "done"
     },
     {
       "id": 0.9835246417059933,
       "title": "ad",
       "description": "ad",
-      "state": "inprogress"
+      "state": "todo"
+    },
+    {
+      "id": 0.7122737817370035,
+      "title": "asd",
+      "description": "asd",
+      "state": "todo"
+    },
+    {
+      "id": 0.7126973349754444,
+      "title": "asd",
+      "description": "das",
+      "state": "done"
+    },
+    {
+      "title": "asd",
+      "description": "dsa",
+      "state": "done",
+      "id": 8
+    },
+    {
+      "title": "asd",
+      "description": "ad",
+      "state": "done",
+      "id": 9
     }
   ]
 }

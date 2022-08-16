@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useContext, useState } from 'react';
+import React, { useCallback, useEffect, useContext } from 'react';
 import TasksContainer from './components/TasksContainer';
 import styled from 'styled-components';
 import TaskContext from './store/task-ctx';
@@ -6,15 +6,15 @@ import NewListForm from './components/NewListForm';
 
 function App() {
   const taskCtx = useContext(TaskContext)
-
-
+  const {loadData} = taskCtx 
   const getData = useCallback(async () => {
     const response = await fetch(process.env.REACT_APP_URL)
     const data = await response.json()
-    taskCtx.setTasks(data)
-  }, [])
+    loadData(data)
+  }, [loadData])
 
-
+console.log('!!!!!!!!!!!!!!!!!!!!!!')
+console.log(taskCtx.tasks)
   useEffect(() => {
     getData()
   }, [getData])

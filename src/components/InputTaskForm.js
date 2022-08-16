@@ -18,7 +18,6 @@ function InputTaskForm(props) {
     const onSubmitFormHandler = (event) => {
         event.preventDefault();
         const Task = {
-            id: Math.random(10000),
             title: titleInput,
             description: taskInput,
             state: props.title.toLowerCase()
@@ -38,6 +37,7 @@ function InputTaskForm(props) {
                 <input onChange={onChangeTaskHandler} value={taskInput}></input>
             </div>
             <StyledButton type="submit">Add</StyledButton>
+            <StyledCloseButton onClick={()=>{props.SetShowFormHandler()}}>Close</StyledCloseButton>
         </form>
     )
 }
@@ -51,4 +51,12 @@ margin-left: 10px;
 margin-bottom: 10px;
 font-size: 10px;
 background-color:#7ac4ba;
+`
+const StyledCloseButton = styled.button`
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+margin-left: 10px;
+margin-bottom: 10px;
+font-size: 10px;
+background-color:#ff5a5a;
 `
