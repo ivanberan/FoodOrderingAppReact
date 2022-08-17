@@ -22,6 +22,7 @@ function InputTaskForm(props) {
             description: taskInput,
             state: props.title.toLowerCase()
         }
+        console.log(Task)
         taskCtx.setTasks(Task)
         props.SetShowFormHandler()
     }

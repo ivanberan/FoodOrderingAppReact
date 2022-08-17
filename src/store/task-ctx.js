@@ -28,7 +28,7 @@ export const AuthContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
       if (!response.ok) {
-        throw new Error("Soming is wrong");
+        throw new Error("Something is wrong");
       }
       const data = await response.json();
       setTasks((prevState) => {
@@ -47,9 +47,10 @@ export const AuthContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
       if (!response.ok) {
-        throw new Error("Soming is wrong");
+        throw new Error("Something is wrong");
       }
       const data = await response.json();
+      console.log(data)
       
     } catch (error) {
       console.log(error);

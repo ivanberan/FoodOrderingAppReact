@@ -13,8 +13,7 @@ function App() {
     loadData(data)
   }, [loadData])
 
-console.log('!!!!!!!!!!!!!!!!!!!!!!')
-console.log(taskCtx.tasks)
+
   useEffect(() => {
     getData()
   }, [getData])
