@@ -3,7 +3,18 @@ import DetailsModal from "./DetailsModal";
 import { useState, useContext } from "react";
 import TaskContext from "../store/task-ctx";
 import styled from "styled-components";
-function TaskItem(props) {
+
+interface TaskInterface {
+  id?: string;
+  title: string;
+  description: string;
+  state: string;
+}
+
+const TaskItem: React.FC<{
+  data: TaskInterface;
+  key: string;
+}> = (props) => {
   const { title } = props.data;
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -19,16 +30,16 @@ function TaskItem(props) {
   }, []);
 
   const changeTasktStateHandler = useCallback(
-    (event) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       const { id, title, description } = props.data;
       const Task = {
         id: id,
         title: title,
         description: description,
-        state: event.target.value,
+        state: event.currentTarget.value,
       };
-    //   console.log('++++++++++++')
-    //   console.log(Task)
+      //   console.log('++++++++++++')
+      //   console.log(Task)
       updateTasks(Task);
     },
     [props, updateTasks]
@@ -71,9 +82,8 @@ function TaskItem(props) {
       {showDropdown && dropdownContent}
     </ItemCard>
   );
-}
+};
 export default TaskItem;
-
 
 const ItemCard = styled.li`
   list-style-type: none;
@@ -86,7 +96,6 @@ const ItemCard = styled.li`
 `;
 
 const DropdownDiv = styled.div`
-
   position: absolute;
   background-color: #f1f1f1;
   overflow: auto;
@@ -106,9 +115,9 @@ const DropdownDiv = styled.div`
   }
 `;
 const StyledButton = styled.button`
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 
-font-size: 15px;
-background-color:#7ac4ba;
-`
+  font-size: 15px;
+  background-color: #7ac4ba;
+`;

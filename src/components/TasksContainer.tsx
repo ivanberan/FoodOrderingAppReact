@@ -3,11 +3,22 @@ import styled from "styled-components";
 import InputTaskForm from "./InputTaskForm";
 import TaskItem from "./TaskItem";
 
-function TasksContainer(props) {
+interface TaskInterface {
+  id?: string;
+  title: string;
+  description: string;
+  state: string;
+}
+
+const TasksContainer: React.FC<{
+  data: TaskInterface[];
+  title: string;
+  key: string;
+}> = (props) => {
   const [showForm, setShowForm] = useState(false);
 
   const SetShowFormHandler = useCallback(() => {
-    setShowForm(prevState => !prevState);
+    setShowForm((prevState) => !prevState);
   }, []);
 
   return (
@@ -15,10 +26,12 @@ function TasksContainer(props) {
       <h1>{props.title}</h1>
       <StyledUL>
         {props.data &&
-          props.data.map((item) => <TaskItem key={item.id} data={item} />)}
+          props.data.map((item) => (
+            <TaskItem key={item.id || ""} data={item} />
+          ))}
       </StyledUL>
       {showForm ? (
-        <InputTaskForm
+        <InputTaskForm 
           title={props.title}
           SetShowFormHandler={SetShowFormHandler}
         />
@@ -27,7 +40,7 @@ function TasksContainer(props) {
       )}
     </ContainerDiv>
   );
-}
+};
 
 export default TasksContainer;
 

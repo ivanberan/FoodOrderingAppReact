@@ -1,18 +1,36 @@
+import React from "react";
 import { createContext, useState, useCallback } from "react";
 
-const TaskContext = createContext({
+interface TaskInterface {
+  id?: string;
+  title: string;
+  description: string;
+  state: string;
+}
+
+interface TaskContextInterface {
+  tasks: TaskInterface[];
+  containerNames: string[];
+  setTasks: (task: TaskInterface) => void;
+  setLists: (newlist: string) => void;
+  updateTasks: (tasl: TaskInterface) => void;
+  loadData: (task: TaskInterface[]) => void;
+}
+
+const TaskContext = createContext<TaskContextInterface>({
   tasks: [],
   containerNames: [],
-  setTasks: () => {},
-  setLists: () => {},
-  updateTasks: () => {},
-  getData: () => {},
-  loadData: () => {},
+  setTasks: (task: TaskInterface) => {},
+  setLists: (newlist: string) => {},
+  updateTasks: (tasl: TaskInterface) => {},
+  loadData: (task: TaskInterface[]) => {},
 });
 
-export const AuthContextProvider = (props) => {
-  const [tasks, setTasks] = useState([]);
-  const [lists, setLists] = useState(["todo", "inprogress", "done"]);
+export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = (
+  props
+) => {
+  const [tasks, setStateTasks] = useState<TaskInterface[]>([]); 
+  const [lists, setLists] = useState<string[]>(["todo", "inprogress", "done"]);
 
   // const getData = useCallback(async () => {
   //     const response = await fetch(process.env.REACT_APP_URL)
@@ -20,9 +38,9 @@ export const AuthContextProvider = (props) => {
   //     setTasks(data)
   // }, [])
 
-  const postData = useCallback(async (task) => {
+  const postData = useCallback(async (task: TaskInterface) => {
     try {
-      const response = await fetch(process.env.REACT_APP_URL, {
+      const response = await fetch(process.env.REACT_APP_URL || "", {
         method: "POST",
         body: JSON.stringify(task),
         headers: { "Content-Type": "application/json" },
@@ -31,7 +49,7 @@ export const AuthContextProvider = (props) => {
         throw new Error("Something is wrong");
       }
       const data = await response.json();
-      setTasks((prevState) => {
+      setStateTasks((prevState) => {
         return prevState.concat(data);
       });
     } catch (error) {
@@ -39,7 +57,7 @@ export const AuthContextProvider = (props) => {
     }
   }, []);
 
-  const patchData = useCallback(async (task) => {
+  const patchData = useCallback(async (task: TaskInterface) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_URL}/${task.id}`, {
         method: "PATCH",
@@ -50,28 +68,26 @@ export const AuthContextProvider = (props) => {
         throw new Error("Something is wrong");
       }
       const data = await response.json();
-      console.log(data)
-      
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  const setListsHandler = useCallback((newList) => {
+  const setListsHandler = useCallback((newList: string) => {
     setLists((prevState) => [...prevState, newList]);
   }, []);
 
   const setTasksHandler = useCallback(
-    (task) => {
+    (task: TaskInterface) => {
       postData(task);
     },
     [postData]
   );
 
-  const loadDataHandler = useCallback((task) => {
-    setTasks((prevState) => {
-      return prevState.concat(task);
-    });
+  const loadDataHandler = useCallback((task: TaskInterface[]) => {
+    setStateTasks(task);
+   
   }, []);
 
   // const getDataHandler = () => {
@@ -79,8 +95,8 @@ export const AuthContextProvider = (props) => {
   // }
 
   const updateTasksHandler = useCallback(
-    (task) => {
-      setTasks((prevState) => {
+    (task: TaskInterface) => {
+      setStateTasks((prevState) => {
         const taskIndex = prevState.findIndex((t) => t.id === task.id);
         prevState[taskIndex] = { ...prevState[taskIndex], ...task };
         return [...prevState];
@@ -89,7 +105,7 @@ export const AuthContextProvider = (props) => {
     },
     [patchData]
   );
-  const contextValue = {
+  const contextValue: TaskContextInterface = {
     tasks: tasks,
     containerNames: lists,
     setLists: setListsHandler,

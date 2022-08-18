@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import TaskContext from './store/task-ctx';
 import NewListForm from './components/NewListForm';
 
+
 function App() {
   const taskCtx = useContext(TaskContext)
   const {loadData} = taskCtx 
   const getData = useCallback(async () => {
-    const response = await fetch(process.env.REACT_APP_URL)
+    const response = await fetch(process.env.REACT_APP_URL as string)
     const data = await response.json()
     loadData(data)
   }, [loadData])

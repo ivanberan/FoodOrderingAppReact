@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
 import TaskContext from '../store/task-ctx';
 
@@ -7,11 +7,11 @@ const NewListForm = () => {
 
     const [newList, setNewList] = useState("")
 
-    const setNewListHandler = (event) => {
+    const setNewListHandler = (event:ChangeEvent<HTMLInputElement>) => {
         setNewList(event.target.value)
     }
 
-    const newListAddHandler = (event) => {
+    const newListAddHandler = (event:FormEvent) => {
         event.preventDefault()
         if (newList.length > 0) {
             taskCtx.setLists(newList)
